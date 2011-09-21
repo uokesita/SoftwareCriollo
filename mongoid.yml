@@ -3,7 +3,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: sfotwarecriollo
+  database: softwarecriollo_dev
 
 test:
   <<: *defaults
