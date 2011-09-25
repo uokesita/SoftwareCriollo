@@ -4,10 +4,8 @@ require 'haml'
 require 'sass'
 require 'mongoid'
 
-#Mongoid.load!("mongoid.yml")
+Mongoid.load!("mongoid.yml")
 
-Mongoid.database = Mongo::Connection.new('staff.mongohq.com','10032').db('softwarecriollo')
-Mongoid.database.authenticate('softwarecriollo','letmein')
 
 class Person
   include Mongoid::Document
@@ -55,7 +53,7 @@ class App < Sinatra::Base
     if suggestion.save
       haml :thanks
     else
-      #
+      haml :index
     end
   end
 
@@ -64,7 +62,7 @@ class App < Sinatra::Base
     if person.save
       haml :suggestion
     else
-      #
+      haml :index
     end
   end
 end
