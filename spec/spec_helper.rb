@@ -1,3 +1,4 @@
+ENV['RACK_ENV'] = 'test'
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'steak'
 require 'spec'
@@ -16,17 +17,18 @@ end
 
 Spec::Runner.configure do |conf|
   conf.before(:suite) do
-#    DatabaseCleaner.strategy = :truncation
-#    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   conf.before(:each) do 
-#    DatabaseCleaner.start
+    DatabaseCleaner.start
   end
        
   conf.after(:each) do 
-#    DatabaseCleaner.clean
+    DatabaseCleaner.clean
   end
+
   conf.include Rack::Test::Methods
   conf.include Capybara::DSL
   Capybara.app = App
