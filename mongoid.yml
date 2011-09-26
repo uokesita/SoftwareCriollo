@@ -1,12 +1,9 @@
-defaults: &defaults
-  host: localhost
-
 development:
-  <<: *defaults
+  host: localhost
   database: softwarecriollo_dev
 
 test:
-  <<: *defaults
+  host: localhost
   database: softwarecriollo_test
 
 production:
