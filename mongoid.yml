@@ -1,6 +1,9 @@
 development:
-  host: localhost
-  database: softwarecriollo_dev
+  host: staff.mongohq.com
+  port: 10032
+  username: softwarecriollo
+  password: letmein
+  database: softwarecriollo
 
 test:
   host: localhost
