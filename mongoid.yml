@@ -1,12 +1,12 @@
-defaults: &defaults
-  host: localhost
-
 development:
-  <<: *defaults
-  database: sfotwarecriollo
+  host: staff.mongohq.com
+  port: 10032
+  username: softwarecriollo
+  password: letmein
+  database: softwarecriollo
 
 test:
-  <<: *defaults
+  host: localhost
   database: softwarecriollo_test
 
 production:

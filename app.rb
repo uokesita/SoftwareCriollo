@@ -4,15 +4,18 @@ require 'haml'
 require 'sass'
 require 'mongoid'
 
-#Mongoid.load!("mongoid.yml")
+Mongoid.load!("mongoid.yml")
 
-Mongoid.database = Mongo::Connection.new('staff.mongohq.com','10032').db('softwarecriollo')
-Mongoid.database.authenticate('softwarecriollo','letmein')
 
 class Person
   include Mongoid::Document
   field :nombre
   field :email
+end
+
+class Suggestion
+  include Mongoid::Document
+  field :nombre
 end
 
 class App < Sinatra::Base
@@ -41,12 +44,25 @@ class App < Sinatra::Base
     haml :thanks
   end
 
+  get '/suggestion' do
+    haml :suggestion
+  end
+
   post '/thanks' do 
-    person = Person.create(params)
-    if person.save
+    suggestion = Suggestion.create(params)
+    if suggestion.save
       haml :thanks
     else
-      #
+      haml :index
+    end
+  end
+
+  post '/suggestion' do 
+    person = Person.create(params)
+    if person.save
+      haml :suggestion
+    else
+      haml :index
     end
   end
 end
