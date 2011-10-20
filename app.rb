@@ -7,15 +7,27 @@ require 'mongoid'
 Mongoid.load!("mongoid.yml")
 
 
+module EncodeString
+  def encode_string
+    self.nombre = self.nombre.encode('utf-8', 'iso-8859-1')
+  end
+end
+
 class Person
   include Mongoid::Document
+  include EncodeString
   field :nombre
   field :email
+
+  before_create :encode_string
 end
 
 class Suggestion
   include Mongoid::Document
+  include EncodeString
   field :nombre
+
+  before_create :encode_string
 end
 
 class App < Sinatra::Base
