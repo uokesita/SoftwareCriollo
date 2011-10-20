@@ -60,6 +60,10 @@ class App < Sinatra::Base
     haml :suggestion
   end
 
+  get '/home' do
+    haml :home
+  end
+
   post '/thanks' do 
     suggestion = Suggestion.create(params)
     if suggestion.save
